@@ -1,0 +1,10 @@
+package sensor;
+
+option java_package = "org.pilin.sensor";
+option java_outer_classname = "SensorProtos";
+
+message Accel {
+  required float x = 1;
+  required float y = 2;
+  required float z = 3;
+}

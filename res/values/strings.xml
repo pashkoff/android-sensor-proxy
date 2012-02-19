@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, SensorTestActivity!</string>
+    <string name="app_name">SensorTest</string>
+    <string name="connectBtn">Connect</string>
+    <string name="socketText">192.168.0.100</string>
+    <string name="xLbl">X</string>
+    <string name="yLbl">Y</string>
+    <string name="zLbl">Z</string>
+    <string name="conStateLbl">Connection state</string>
+    <string-array name="connStates">
+        <item >Disconnected</item>
+        <item >Connecting</item>
+        <item >Connected</item>
+    </string-array>
+
+</resources>
