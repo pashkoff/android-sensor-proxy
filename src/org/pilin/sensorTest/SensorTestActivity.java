@@ -7,6 +7,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import org.pilin.sensor.SensorProtos;
 
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.StringBuilderPrinter;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,9 +42,7 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 	private float[] rotvecData = new float[4];
 	private float[] proxymData = new float[1];
 
-	private TextView xText;
-	private TextView yText;
-	private TextView zText;
+	private TextView dataLbl;
 	private TextView socketText;
 	private Button connectBtn;
 	private TextView connStateLbl;
@@ -68,9 +68,8 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 
 		accelData = new float[3];
 
-		xText = (TextView) findViewById(R.id.xText);
-		yText = (TextView) findViewById(R.id.yText);
-		zText = (TextView) findViewById(R.id.zText);
+		dataLbl = (TextView) findViewById(R.id.dataLbl);
+
 		socketText = (TextView) findViewById(R.id.socketText);
 		socketText.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -186,10 +185,39 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 	public void onSensorChanged(SensorEvent event) {
 		loadNewSensorData(event);
 
-		// Выводим результат
-		xText.setText(String.valueOf(accelData[0]));
-		yText.setText(String.valueOf(accelData[1]));
-		zText.setText(String.valueOf(accelData[2]));
+
+//		xText.setText(String.valueOf(accelData[0]));
+//		yText.setText(String.valueOf(accelData[1]));
+//		zText.setText(String.valueOf(accelData[2]));
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("accel\n")
+			.append("X = ").append(accelData[0]).append('\n')
+			.append("Y = ").append(accelData[1]).append('\n')
+			.append("Z = ").append(accelData[2]).append('\n');
+		
+		sb.append("gravity\n")
+			.append("X = ").append(gravityData[0]).append('\n')
+			.append("Y = ").append(gravityData[1]).append('\n')
+			.append("Z = ").append(gravityData[2]).append('\n');
+		
+		sb.append("gyro\n")
+			.append("X = ").append(gyroData[0]).append('\n')
+			.append("Y = ").append(gyroData[1]).append('\n')
+			.append("Z = ").append(gyroData[2]).append('\n');
+		
+		sb.append("linac\n")
+			.append("X = ").append(linacData[0]).append('\n')
+			.append("Y = ").append(linacData[1]).append('\n')
+			.append("Z = ").append(linacData[2]).append('\n');
+		
+		sb.append("rotvec\n")
+			.append("X = ").append(rotvecData[0]).append('\n')
+			.append("Y = ").append(rotvecData[1]).append('\n')
+			.append("Z = ").append(rotvecData[2]).append('\n')
+			.append("W = ").append(rotvecData[3]).append('\n');
+			
+		dataLbl.setText(sb.toString());
 
 		sendSensorData(accelData);
 	}

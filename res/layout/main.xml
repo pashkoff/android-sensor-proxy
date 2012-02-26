@@ -8,22 +8,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/xLbl"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/xLbl"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/xText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0"
-            android:textSize="25dp" />
+
 
     </LinearLayout>
 
@@ -31,50 +16,26 @@
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
+
         <TextView
-            android:id="@+id/yLbl"
+            android:id="@+id/dataLbl"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
+            android:layout_height="378dp"
             android:layout_weight="1"
             android:text="@string/yLbl"
-            android:textSize="25dp" />
+            android:textSize="15dp" />
 
- />
-
-        <TextView
-            android:id="@+id/yText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0"
-            android:textSize="25dp" />
+ />
 
+        
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/zLbl"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/zLbl"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/zText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0"
-            android:textSize="25dp" />
-
     </LinearLayout>
-
+
     <EditText
         android:id="@+id/socketText"
         android:layout_width="match_parent"
@@ -83,7 +44,7 @@
 
         <requestFocus />
     </EditText>
-
+
     <Button
         android:id="@+id/connectBtn"
         android:layout_width="wrap_content"
@@ -94,19 +55,18 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/conStateLbl" />
-
+
         <TextView
             android:id="@+id/conStateLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
     </LinearLayout>
 
 </LinearLayout>
