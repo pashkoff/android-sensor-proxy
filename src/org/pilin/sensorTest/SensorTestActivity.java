@@ -33,7 +33,12 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 
 	private SensorManager msensorManager;
 
-	private float[] accelData;
+	private float[] accelData = new float[3];
+	private float[] gravityData = new float[3];
+	private float[] gyroData = new float[3];
+	private float[] linacData = new float[3];
+	private float[] rotvecData = new float[4];
+	private float[] proxymData = new float[1];
 
 	private TextView xText;
 	private TextView yText;
@@ -121,8 +126,26 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 	// /
 
 	private void activateSensor() {
-		if (!msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_UI)) {
+		if (!msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL)) {
 			Log.w(TAG, "TYPE_ACCELEROMETER err");
+		}
+		if (!msensorManager.registerListener(this, msensorManager.getDefaultSensor(/*Sensor.TYPE_GRAVITY*/9), SensorManager.SENSOR_DELAY_NORMAL)) {
+			Log.w(TAG, "TYPE_GRAVITY err");
+		}
+		if (!msensorManager.registerListener(this, msensorManager.getDefaultSensor(/*Sensor.TYPE_LINEAR_ACCELERATION*/10), SensorManager.SENSOR_DELAY_NORMAL)) {
+			Log.w(TAG, "TYPE_LINEAR_ACCELERATION err");
+		}
+		if (!msensorManager.registerListener(this, msensorManager.getDefaultSensor(/*Sensor.TYPE_ROTATION_VECTOR*/11), SensorManager.SENSOR_DELAY_NORMAL)) {
+			Log.w(TAG, "TYPE_ROTATION_VECTOR err");
+		}
+		if (!msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL)) {
+			Log.w(TAG, "TYPE_PROXIMITY err");
+		}
+		
+		List<Sensor> sensorList = msensorManager.getSensorList(Sensor.TYPE_ALL);
+		for (Sensor s : sensorList)
+		{
+			Log.i(TAG, s.toString() + " " + s.getName() + " " + s.getType());
 		}
 	}
 
@@ -132,9 +155,32 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 
 	private void loadNewSensorData(SensorEvent event) {
 		final int type = event.sensor.getType();
-		if (type == Sensor.TYPE_ACCELEROMETER) {
+		
+		switch (type)
+		{
+		case Sensor.TYPE_ACCELEROMETER:
 			accelData = event.values.clone();
+			break;
+		case 9: // gravity
+			gravityData = event.values.clone();
+			break;
+		case Sensor.TYPE_GYROSCOPE:
+			gyroData = event.values.clone();
+			break;
+		case 10: // linear accel
+			linacData = event.values.clone();
+			break;
+		case 11: // rot vec
+			rotvecData = event.values.clone();
+			break;
+		case Sensor.TYPE_PROXIMITY:
+			proxymData = event.values.clone();
+			break;
+		default:
+			Log.v(TAG, "unknown sensor " + type);
 		}
+		
+		
 	}
 
 	public void onSensorChanged(SensorEvent event) {
