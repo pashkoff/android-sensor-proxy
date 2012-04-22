@@ -257,6 +257,7 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 
 		try {
 			mSocket = new DatagramSocket();
+			mSocket.setBroadcast(true);
 			
 			changeConnectionState(ConnectionState.CONNECTED);
 			
@@ -293,7 +294,7 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
 		byte[] ba = acc.toByteArray();
 
 		try {
-			InetAddress addr = InetAddress.getByName(address);
+			InetAddress addr = InetAddress.getByName("255.255.255.255");
 			DatagramPacket dp = new DatagramPacket(ba, ba.length, addr, PORT);
 
 			mSocket.send(dp);
